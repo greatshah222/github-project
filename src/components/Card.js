@@ -1,9 +1,51 @@
-import React from 'react';
-import { GithubContext } from '../context/context';
+import React, { useContext } from 'react';
+import { GitHubContext } from '../context/context';
 import styled from 'styled-components';
 import { MdBusiness, MdLocationOn, MdLink } from 'react-icons/md';
 const Card = () => {
-  return <h2>card component</h2>;
+  const { gitHubUser } = useContext(GitHubContext);
+  const {
+    login,
+    avatar_url,
+    html_url,
+    company,
+    blog,
+    bio,
+    location,
+    twitter_username,
+    name,
+  } = gitHubUser;
+  return (
+    <Wrapper>
+      <header>
+        <img src={avatar_url} alt={name} />
+        <div>
+          <h4>{name}</h4>
+          <p>{twitter_username ? `@${twitter_username}` : ''}</p>
+        </div>
+        <a href={html_url} target='_blank' rel='noopener noreferrer'>
+          follow
+        </a>
+      </header>
+      <p className='bio'>{bio}</p>
+      <div className='links'>
+        <p>
+          <MdBusiness />
+          {company ? company : 'Not Specified'}
+        </p>
+        <p>
+          <MdLocationOn />
+          {location || 'earth'}
+        </p>
+        <p>
+          <MdLink />
+          <a href={`https://${blog}`} target='_blank' rel='noopener noreferrer'>
+            {blog || 'Not Specified'}
+          </a>
+        </p>
+      </div>
+    </Wrapper>
+  );
 };
 const Wrapper = styled.article`
   background: var(--clr-white);
@@ -13,7 +55,7 @@ const Wrapper = styled.article`
   border-bottom-right-radius: var(--radius);
   position: relative;
   &::before {
-    content: 'user';
+    content: 'user info';
     position: absolute;
     top: 0;
     left: 0;
@@ -44,6 +86,7 @@ const Wrapper = styled.article`
     p {
       margin-bottom: 0;
     }
+
     a {
       color: var(--clr-primary-5);
       border: 1px solid var(--clr-primary-5);
@@ -73,6 +116,7 @@ const Wrapper = styled.article`
         font-size: 1.3rem;
       }
     }
+
     a {
       color: var(--clr-primary-5);
       transition: var(--transition);

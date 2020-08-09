@@ -1,10 +1,3 @@
-## Starter Project
-
-- css provided (global styles, styled components)
-- folders/files already setup
-- all imports included (warnings)
-- index.js for easier imports
-
 ## Styled Components
 
 [Styled-Components - Main Docs](https://styled-components.com/)
@@ -35,21 +28,12 @@ import { FiUsers, FiUserPlus } from 'react-icons/fi';
 <FiUsers className='nameOfTheClass'> </FiUsers>;
 ```
 
-## React Router Dom
-
-version used - "react-router-dom": "^5.2.0",
-
-- [react-router-dom - Main Docs](https://reactrouter.com/web/guides/quick-start)
-
-- <Switch> renders the first child <Route> that matches
-- A <Route path="*"> always matches
-
 ## Gihthub API
 
 - [Root Endpoint](https://api.github.com)
-- [Get User](https://api.github.com/users/wesbos)
-- [Repos](https://api.github.com/users/john-smilga/repos?per_page=100)
-- [Followers](https://api.github.com/users/john-smilga/followers)
+- [Get User](https://api.github.com/users/greatshah222)
+- [Repos](https://api.github.com/users/greatshah222/repos?per_page=100)
+- [Followers](https://api.github.com/users/greatshah222/followers)
 - [Rate Limit](https://api.github.com/rate_limit)
 
   For unauthenticated requests, the rate limit allows for up to 60 requests per hour. Unauthenticated requests are associated with the originating IP address, and not the user making requests.
