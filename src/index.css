@@ -10,6 +10,9 @@ Fonts
 Variables
 ===============
 */
+body > * {
+  overflow-x: hidden;
+}
 
 :root {
   /* dark shades of primary color*/
@@ -68,7 +71,13 @@ Global Styles
 }
 body {
   font-family: var(--ff-secondary);
-  background: var(--clr-grey-10);
+  background: rgb(23, 23, 24);
+  background: linear-gradient(
+    90deg,
+    rgba(23, 23, 24, 1) 0%,
+    rgba(44, 44, 48, 1) 35%,
+    rgba(55, 53, 53, 1) 100%
+  );
   color: var(--clr-grey-1);
   line-height: 1.5;
   font-size: 0.875rem;
@@ -168,7 +177,8 @@ p {
 }
 @media screen and (min-width: 992px) {
   .section-center {
-    width: 95vw;
+    width: 90vw;
+    margin: 0 auto;
   }
 }
 .loading-img {
@@ -180,4 +190,10 @@ p {
 }
 main {
   padding-bottom: 2rem;
+}
+@media screen and (max-width: 500px) {
+  .section-center {
+    width: 100vw;
+    margin: 0 auto;
+  }
 }

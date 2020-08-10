@@ -14,6 +14,7 @@ const Search = () => {
     errors,
     errorsType,
     searchGitHubUser,
+    loading,
   } = useContext(GitHubContext);
 
   const handleSubmit = async (e) => {
@@ -30,7 +31,6 @@ const Search = () => {
   const InputChangedHandler = (e) => {
     setUser(e.target.value);
   };
-  console.log(errors);
   return (
     <>
       <ToastContainer />
@@ -50,7 +50,8 @@ const Search = () => {
                 value={user}
                 onChange={InputChangedHandler}
               />
-              <button disabled={!user || !requests}>Search</button>
+
+              <button disabled={!user || !requests || loading}>Search</button>
             </div>
           </form>
           <h3>
@@ -71,6 +72,7 @@ const Wrapper = styled.div`
     align-items: center;
     h3 {
       padding: 0 0.5rem;
+      color: rgba(255, 255, 255, 0.836);
     }
   }
   .form-control {
@@ -132,8 +134,7 @@ const Wrapper = styled.div`
   }
   h3 {
     margin-bottom: 0;
-    color: var(--clr-grey-5);
-    font-weight: 400;
+    font-weight: 300;
   }
 `;
 const ErrorWrapper = styled.article`

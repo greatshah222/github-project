@@ -1,7 +1,8 @@
 // STEP 1 - Include Dependencies
 // Include react
-import React from 'react';
-
+import React, { useEffect } from 'react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 // Include the react-fusioncharts component
 import ReactFC from 'react-fusioncharts';
 
@@ -18,6 +19,9 @@ import FusionTheme from 'fusioncharts/themes/fusioncharts.theme.candy';
 ReactFC.fcRoot(FusionCharts, Column2D, FusionTheme);
 
 const Doughnut2d = ({ data }) => {
+  useEffect(() => {
+    AOS.init();
+  }, []);
   // STEP 2 - Chart Data
 
   // STEP 3 - Creating the JSON object to store the chart configurations
@@ -47,7 +51,11 @@ const Doughnut2d = ({ data }) => {
       data: data,
     },
   };
-  return <ReactFC {...chartConfigs} />;
+  return (
+    <div data-aos='fade-left'>
+      <ReactFC {...chartConfigs} />
+    </div>
+  );
 };
 
 export default Doughnut2d;

@@ -1,9 +1,20 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Info, Repos, User, Search, Navbar } from '../components';
+import { GitHubContext } from '../context/context';
 // make it gif to work
-// import loadingImage from '../images/preloader.gi';
-import { GithubContext } from '../context/context';
+import loadingImage from '../images/preloader.gif';
+
 const Dashboard = () => {
+  const { loading } = useContext(GitHubContext);
+  if (loading) {
+    return (
+      <main>
+        <Navbar></Navbar>
+        <Search />
+        <img src={loadingImage} alt='imageLoading' className='loading-img' />
+      </main>
+    );
+  }
   return (
     <main>
       <Navbar></Navbar>

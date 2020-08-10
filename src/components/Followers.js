@@ -1,26 +1,31 @@
 import React from 'react';
 import { GitHubContext } from '../context/context';
 import styled from 'styled-components';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const Followers = () => {
   const { gitHubFollowers } = useContext(GitHubContext);
-
-  console.log(gitHubFollowers);
+  useEffect(() => {
+    AOS.init();
+  }, []);
   return (
-    <Wrapper>
-      <div className='followers'>
-        {gitHubFollowers.map((el, i) => (
-          <article key={i}>
-            <img src={el.avatar_url} alt={el.login} />
-            <div>
-              <h4>{el.login}</h4>
-              <a href={el.html_url}>{el.html_url}</a>
-            </div>
-          </article>
-        ))}
-      </div>
-    </Wrapper>
+    <div data-aos='fade-right'>
+      <Wrapper>
+        <div className='followers'>
+          {gitHubFollowers.map((el, i) => (
+            <article key={i}>
+              <img src={el.avatar_url} alt={el.login} />
+              <div>
+                <h4>{el.login}</h4>
+                <a href={el.html_url}>{el.html_url}</a>
+              </div>
+            </article>
+          ))}
+        </div>
+      </Wrapper>
+    </div>
   );
 };
 

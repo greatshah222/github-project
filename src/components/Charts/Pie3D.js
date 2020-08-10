@@ -1,6 +1,8 @@
 // STEP 1 - Include Dependencies
 // Include react
-import React from 'react';
+import React, { useEffect } from 'react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 // Include the react-fusioncharts component
 import ReactFC from 'react-fusioncharts';
@@ -18,6 +20,9 @@ import FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion';
 ReactFC.fcRoot(FusionCharts, Column2D, FusionTheme);
 
 const Pie3D = ({ data }) => {
+  useEffect(() => {
+    AOS.init();
+  }, []);
   // STEP 2 - Chart Data
 
   // STEP 3 - Creating the JSON object to store the chart configurations
@@ -45,7 +50,11 @@ const Pie3D = ({ data }) => {
       data: data,
     },
   };
-  return <ReactFC {...chartConfigs} />;
+  return (
+    <div data-aos='fade-right'>
+      <ReactFC {...chartConfigs} />
+    </div>
+  );
 };
 
 export default Pie3D;

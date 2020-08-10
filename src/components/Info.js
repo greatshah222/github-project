@@ -9,6 +9,7 @@ const UserInfo = () => {
   const { gitHubFollowers, gitHubUser, gitHubRepos } = useContext(
     GitHubContext
   );
+
   const {
     public_repos,
     followers,
@@ -16,7 +17,6 @@ const UserInfo = () => {
     public_gists,
     login,
   } = gitHubUser;
-  console.log(gitHubUser);
   const items = [
     {
       id: 1,

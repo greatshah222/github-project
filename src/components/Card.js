@@ -1,7 +1,9 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { GitHubContext } from '../context/context';
 import styled from 'styled-components';
 import { MdBusiness, MdLocationOn, MdLink } from 'react-icons/md';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 const Card = () => {
   const { gitHubUser } = useContext(GitHubContext);
   const {
@@ -15,36 +17,45 @@ const Card = () => {
     twitter_username,
     name,
   } = gitHubUser;
+  useEffect(() => {
+    AOS.init();
+  }, []);
   return (
-    <Wrapper>
-      <header>
-        <img src={avatar_url} alt={name} />
-        <div>
-          <h4>{name}</h4>
-          <p>{twitter_username ? `@${twitter_username}` : ''}</p>
-        </div>
-        <a href={html_url} target='_blank' rel='noopener noreferrer'>
-          follow
-        </a>
-      </header>
-      <p className='bio'>{bio}</p>
-      <div className='links'>
-        <p>
-          <MdBusiness />
-          {company ? company : 'Not Specified'}
-        </p>
-        <p>
-          <MdLocationOn />
-          {location || 'earth'}
-        </p>
-        <p>
-          <MdLink />
-          <a href={`https://${blog}`} target='_blank' rel='noopener noreferrer'>
-            {blog || 'Not Specified'}
+    <div data-aos='fade-up-left'>
+      <Wrapper>
+        <header>
+          <img src={avatar_url} alt={name} />
+          <div>
+            <h4>{name}</h4>
+            <p>{twitter_username ? `@${twitter_username}` : ''}</p>
+          </div>
+          <a href={html_url} target='_blank' rel='noopener noreferrer'>
+            follow
           </a>
-        </p>
-      </div>
-    </Wrapper>
+        </header>
+        <p className='bio'>{bio}</p>
+        <div className='links'>
+          <p>
+            <MdBusiness />
+            {company ? company : 'Not Specified'}
+          </p>
+          <p>
+            <MdLocationOn />
+            {location || 'earth'}
+          </p>
+          <p>
+            <MdLink />
+            <a
+              href={`https://${blog}`}
+              target='_blank'
+              rel='noopener noreferrer'
+            >
+              {blog || 'Not Specified'}
+            </a>
+          </p>
+        </div>
+      </Wrapper>
+    </div>
   );
 };
 const Wrapper = styled.article`

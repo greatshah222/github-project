@@ -43,7 +43,18 @@ const GitHubProvider = ({ children }) => {
     checkRequestLimit();
     try {
       const res = await axios(`${rootUrl}/users/${user}`);
+      const { login } = res.data;
       setGitHubUser(res.data);
+      // https://api.github.com/users/greatshah222/followers
+      const resRepos = await axios(
+        `${rootUrl}/users/${login}/repos?per_page=100`
+      );
+      await setGitHubRepos(resRepos.data);
+      const resFollower = await axios(
+        `${rootUrl}/users/${login}/followers?per_page=100`
+      );
+      await setGitHubFollowers(resFollower.data);
+
       setLoading(false);
     } catch (error) {
       console.log(error);
@@ -54,7 +65,9 @@ const GitHubProvider = ({ children }) => {
   };
 
   // this means as soon as the page runs run this function(might be useful for further projects)
-  useEffect(checkRequestLimit, []);
+  useEffect(() => {
+    checkRequestLimit();
+  }, []);
   return (
     <GitHubContext.Provider
       value={{
