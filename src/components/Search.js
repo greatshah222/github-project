@@ -1,9 +1,65 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { MdSearch } from 'react-icons/md';
-import { GithubContext } from '../context/context';
+import { GitHubContext } from '../context/context';
+import { useContext } from 'react';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 const Search = () => {
-  return <h2>search component</h2>;
+  const [user, setUser] = useState('');
+  const {
+    requests,
+    requestsLimit,
+    errors,
+    errorsType,
+    searchGitHubUser,
+  } = useContext(GitHubContext);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await searchGitHubUser(user);
+      setUser('');
+    } catch (error) {
+      await toast.error(error.response.data.message);
+    }
+
+    //if we get the res that means succesfully found user
+  };
+  const InputChangedHandler = (e) => {
+    setUser(e.target.value);
+  };
+  console.log(errors);
+  return (
+    <>
+      <ToastContainer />
+      <section className='section'>
+        <Wrapper className='section-center'>
+          {errors && errorsType === 'limit' && (
+            <ErrorWrapper>
+              <p>{errors}</p>
+            </ErrorWrapper>
+          )}
+          <form onSubmit={handleSubmit}>
+            <div className='form-control'>
+              <MdSearch />
+              <input
+                type='text'
+                placeholder='Enter Github user Name'
+                value={user}
+                onChange={InputChangedHandler}
+              />
+              <button disabled={!user || !requests}>Search</button>
+            </div>
+          </form>
+          <h3>
+            request:{requests} / {requestsLimit}
+          </h3>
+        </Wrapper>
+      </section>
+    </>
+  );
 };
 
 const Wrapper = styled.div`
@@ -48,6 +104,11 @@ const Wrapper = styled.div`
       transition: var(--transition);
       cursor: pointer;
       &:hover {
+        background: var(--clr-primary-8);
+        color: var(--clr-primary-1);
+      }
+      &:disabled {
+        cursor: not-allowed;
         background: var(--clr-primary-8);
         color: var(--clr-primary-1);
       }

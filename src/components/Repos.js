@@ -81,18 +81,65 @@ const Repos = () => {
     starLanguageChart.push({ label: el, value: starLanguage[el].value });
     return starLanguageChart;
   });
-  console.log(starLanguageChart);
   // again sorting only top 4 and slicing
   starLanguageChart = Object.values(starLanguageChart)
     .sort((a, b) => b - a)
     .slice(0, 4);
+
+  // most forked and star
+  let mostForkedAndStarTogether = [];
+  gitHubRepos.forEach((el) => {
+    return mostForkedAndStarTogether.push({
+      label: el.name,
+      value: el.stargazers_count,
+      forkValue: el.forks,
+    });
+  });
+  // star value just sorting and slicing cause its managed in the mostForkedAndStarTogether(which means value is correct assigned to star)
+  const mostStar = Object.values(mostForkedAndStarTogether)
+    .sort((a, b) => b.value - a.value)
+    .slice(0, 5);
+  // for only forked we have to chanage the the value from star value to fork value
+  let mostForked = [];
+  mostForkedAndStarTogether.forEach((el) => {
+    mostForked.push({
+      label: el.label,
+      value: el.forkValue,
+    });
+  });
+  // sorting and then selecting top5
+  mostForked = Object.values(mostForked)
+    .sort((a, b) => b.value - a.value)
+    .slice(0, 5);
+
+  // let { stars, forks } = gitHubRepos.reduce(
+  //   (acc, cur) => {
+  //     const { stargazers_count, name, forks } = cur;
+  //     // console.log(stargazers_count);
+  //     // acc.stars[stargazers_count] = { label: name, value: stargazers_count };
+  //     // console.log(acc.stars);
+  //     // acc.forks[forks] = { label: name, value: forks };
+
+  //     return acc;
+  //   },
+  //   // remember this below values in {} is initialized as acc in above reduce function. you also can say acc.stars is star in other word if there is [100,2] u can say acc[0] is 100 and acc[1] is 2.
+  //   // // This is the reason we were able to destructure the array {stars,forks } in the first place
+  //   {
+  //     stars: {},
+  //     forks: {},
+  //   }
+  // );
+
+  // stars = Object.values(stars).slice(-5).reverse();
   return (
     <section className='section'>
       <Wrapper className='section-center'>
         {' '}
-        <ExampleChart data={mostUsedLanguage} />
+        {/* <ExampleChart data={mostUsedLanguage} /> */}
         <Pie3D data={mostUsedLanguage} />
         <Doughnut2D data={starLanguageChart} />
+        <Column3D data={mostStar} />
+        <Bar3D data={mostForked} />
       </Wrapper>
     </section>
   );
