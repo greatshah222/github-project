@@ -10,6 +10,15 @@ const Followers = () => {
   useEffect(() => {
     AOS.init();
   }, []);
+  if (gitHubFollowers.length === 0 || !gitHubFollowers) {
+    return (
+      <Wrapper>
+        <div className='followers'>
+          <h4 style={{ textAlign: 'center' }}>No followers</h4>
+        </div>
+      </Wrapper>
+    );
+  }
   return (
     <div data-aos='fade-right'>
       <Wrapper>

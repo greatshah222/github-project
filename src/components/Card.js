@@ -16,6 +16,7 @@ const Card = () => {
     twitter_username,
     name,
   } = gitHubUser;
+
   useEffect(() => {
     AOS.init();
   }, []);
@@ -36,7 +37,7 @@ const Card = () => {
         <div className='links'>
           <p>
             <MdBusiness />
-            {company ? company : 'Not Specified'}
+            {company ? company : ' Company Not Specified'}
           </p>
           <p>
             <MdLocationOn />
