@@ -71,7 +71,6 @@ Global Styles
 }
 body {
   font-family: var(--ff-secondary);
-  background: rgb(23, 23, 24);
   background: linear-gradient(
     90deg,
     rgba(23, 23, 24, 1) 0%,

@@ -64,6 +64,7 @@ const Search = () => {
 };
 
 const Wrapper = styled.div`
+  margin-top: 1rem;
   position: relative;
   display: grid;
   gap: 1rem 1.75rem;
@@ -87,7 +88,7 @@ const Wrapper = styled.div`
       border-color: transparent;
       outline-color: var(--clr-grey-10);
       letter-spacing: var(--spacing);
-      color: var(--clr-grey-3);
+      color: var(--clr-grey-2);
       padding: 0.25rem 0.5rem;
     }
     input::placeholder {
@@ -135,6 +136,10 @@ const Wrapper = styled.div`
   h3 {
     margin-bottom: 0;
     font-weight: 300;
+    text-align: center;
+
+    padding: 0 0.5rem;
+    color: rgba(255, 255, 255, 0.836);
   }
 `;
 const ErrorWrapper = styled.article`

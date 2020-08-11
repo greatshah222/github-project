@@ -1,20 +1,12 @@
 import React from 'react';
-import { Dashboard, Login, PrivateRoute, AuthWrapper, Error } from './pages';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Redirect,
-} from 'react-router-dom';
+import { Dashboard, Error } from './pages';
+import { Switch, Route, Redirect } from 'react-router-dom';
+
 import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   return (
     <Switch>
-      <Route path='/login'>
-        {' '}
-        <Login />
-      </Route>
       <Route path='/error'>
         <Error />
       </Route>

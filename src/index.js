@@ -4,10 +4,10 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import GithubProvider from './context/context';
-import { Auth0Provider } from '@auth0/auth0-react';
 import { BrowserRouter } from 'react-router-dom';
 
 ReactDOM.render(
+  // here github provoder is just our wrapper from use context
   <GithubProvider>
     <BrowserRouter>
       <App />

@@ -7,7 +7,6 @@ import 'aos/dist/aos.css';
 const Card = () => {
   const { gitHubUser } = useContext(GitHubContext);
   const {
-    login,
     avatar_url,
     html_url,
     company,
